@@ -1,12 +1,16 @@
-def ask_questions():
-    score = 0
+import json
 
-    questions = [
-        {"question": "What year Finland won its first gold in ice hockey world championship", "answer": "1995"},
-        {"question": "What is the chemical symbol for water?", "answer": "H2O"},
-        {"question": "What year did the Titanic sink?", "answer": "1912"},
-        {"question": "What is the capital of France?", "answer": "Paris"}
-    ]
+def load_questions(file_path):
+    try:
+        with open(file_path, 'r') as f:
+            data = json.load(f)
+            return data["questions"]
+    except FileNotFoundError:
+        print("No file found")
+        return []
+
+def ask_questions(questions):
+    score = 0
 
     for q in questions:
         print(q["question"])
@@ -26,7 +30,8 @@ def quiz_game():
 
         if start == "yes":
             print("Game starting..\n")
-            score, total = ask_questions()
+            questions = load_questions("questions.json")
+            score, total = ask_questions(questions)
             print(f"You got {score}/{total} correct!\n")
         else:
             print("Sad, goodbye")
