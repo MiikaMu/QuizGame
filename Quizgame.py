@@ -13,10 +13,10 @@ def ask_questions():
         answer = input("Answer: ")
 
         if answer.lower() == q["answer"].lower():
-            print("Correct!!")
+            print("Correct!!\n")
             score +=1
         else:
-            print("Wrong :(")
+            print("Wrong :(\n")
 
     return score, len(questions)
 
@@ -27,7 +27,7 @@ def quiz_game():
         if start == "yes":
             print("Game starting..\n")
             score, total = ask_questions()
-            print(f"You got {score}/{total} correct!")
+            print(f"You got {score}/{total} correct!\n")
         else:
             print("Sad, goodbye")
             break
